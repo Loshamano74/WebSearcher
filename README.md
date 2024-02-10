@@ -3,7 +3,11 @@ Search the web via a website
 
 
 # Requirements
-To use this make sure to have an editor thet has css, json, python3 and html.
+To use this make sure to have installed these languages on your device or editor:
+css
+json
+python3
+html
 
 # How to Download via source code
 1. Download the zip code
