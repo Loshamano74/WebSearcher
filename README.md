@@ -9,6 +9,11 @@ json
 python3
 html
 
+For python install these packages:
+googlesearch
+json
+flask
+
 # How to Download via source code
 1. Download the zip code
 2. Extract it to any folder of your choice. Make sure that it remains seperated form other projects and keep the code in its own directory.
