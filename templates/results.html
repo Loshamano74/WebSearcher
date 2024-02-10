@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results for {{ full_name }}</h1>
+    {% if urls %}
+        <textarea rows="10" cols="50" readonly>
+            {% for url in urls %}
+                {{ url }}
+            {% endfor %}
+        </textarea>
+    {% else %}
+        <p>No search results found.</p>
+    {% endif %}
+</body>
+</html>
