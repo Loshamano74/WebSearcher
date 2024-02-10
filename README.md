@@ -17,7 +17,7 @@ html
 5. Run the main.py script
 
 # How to clone repo
-1.  Paste this in a terminal:  https://github.com/Loshamano74/WebSearcher.git
+1.  Paste this in a terminal:  git clone https://github.com/Loshamano74/WebSearcher.git
 2.  Go to the directory:  cd WebSearcher
 3.  Run the python file:  python3 main.py
 
