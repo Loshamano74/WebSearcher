@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,12 +12,8 @@
         <p class="welcome-message">This is your first time using the app. You can start searching for legal information.</p>
     {% endif %}
     <form action="/search" method="post">
-        <label for="first_name">First Name:</label>
-        <input type="text" id="first_name" name="first_name"><br><br>
-        <label for="last_name">Last Name:</label>
-        <input type="text" id="last_name" name="last_name"><br><br>
-        <label for="extra_name">Extra Name:</label>
-        <input type="text" id="extra_name" name="extra_name"><br><br>
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name"><br><br>
         <input type="submit" value="Search"><br><br>
         <label for="url_box">Search Results:</label><br>
         <textarea id="url_box" name="url_box" rows="10" cols="100" readonly>
