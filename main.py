@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 import json
 from googlesearch import search
@@ -7,10 +7,9 @@ app = Flask(__name__)
 
 CACHE_DIR = "cache"
 FIRST_TIME_FILE = "first_time.json"
-HISTORY_FILE = "history.json"
 
 def load_search_history():
-    history_file_path = os.path.join(CACHE_DIR, HISTORY_FILE)
+    history_file_path = os.path.join(CACHE_DIR, "history.json")
     try:
         with open(history_file_path, 'r') as file:
             return json.load(file)
@@ -18,7 +17,7 @@ def load_search_history():
         return []
 
 def save_search_history(history):
-    history_file_path = os.path.join(CACHE_DIR, HISTORY_FILE)
+    history_file_path = os.path.join(CACHE_DIR, "history.json")
     with open(history_file_path, 'w') as file:
         json.dump(history, file)
 
@@ -46,11 +45,7 @@ def index():
 
 @app.route('/search', methods=['POST'])
 def search_person():
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    extra_name = request.form['extra_name']
-
-    full_name = f"{first_name} {last_name} {extra_name}".strip()
+    full_name = request.form['full_name']
     query = f"{full_name}"
     urls = list(search(query))
 
@@ -73,22 +68,17 @@ def history():
     search_history = load_search_history()
     return jsonify(search_history)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 if __name__ == "__main__":
     if not os.path.exists(CACHE_DIR):
         os.makedirs(CACHE_DIR)
 
-    # Check if the first_time.json file exists
     first_time_file_path = os.path.join(CACHE_DIR, FIRST_TIME_FILE)
     if not os.path.exists(first_time_file_path):
-        # If not, create it with first_time set to True
         with open(first_time_file_path, 'w') as file:
             json.dump({"first_time": True}, file)
-
-    # Check if the history.json file exists
-    history_file_path = os.path.join(CACHE_DIR, HISTORY_FILE)
-    if not os.path.exists(history_file_path):
-        # If not, create it as an empty array
-        with open(history_file_path, 'w') as file:
-            json.dump([], file)
-
+        
     app.run(debug=True)
